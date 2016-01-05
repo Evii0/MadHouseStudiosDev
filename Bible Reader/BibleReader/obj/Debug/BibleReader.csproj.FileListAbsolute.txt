@@ -1,0 +1,9 @@
+c:\users\alexanpe\documents\visual studio 2015\Projects\BibleReader\BibleReader\bin\Debug\BibleReader.exe.config
+c:\users\alexanpe\documents\visual studio 2015\Projects\BibleReader\BibleReader\bin\Debug\BibleReader.exe
+c:\users\alexanpe\documents\visual studio 2015\Projects\BibleReader\BibleReader\bin\Debug\BibleReader.pdb
+c:\users\alexanpe\documents\visual studio 2015\Projects\BibleReader\BibleReader\obj\Debug\BibleReader.csprojResolveAssemblyReference.cache
+c:\users\alexanpe\documents\visual studio 2015\Projects\BibleReader\BibleReader\obj\Debug\BibleReader.Form1.resources
+c:\users\alexanpe\documents\visual studio 2015\Projects\BibleReader\BibleReader\obj\Debug\BibleReader.Properties.Resources.resources
+c:\users\alexanpe\documents\visual studio 2015\Projects\BibleReader\BibleReader\obj\Debug\BibleReader.csproj.GenerateResource.Cache
+c:\users\alexanpe\documents\visual studio 2015\Projects\BibleReader\BibleReader\obj\Debug\BibleReader.exe
+c:\users\alexanpe\documents\visual studio 2015\Projects\BibleReader\BibleReader\obj\Debug\BibleReader.pdb
