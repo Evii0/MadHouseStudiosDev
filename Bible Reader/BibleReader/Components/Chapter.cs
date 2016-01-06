@@ -11,15 +11,17 @@ namespace BibleReader.Components
     {
         private List<Verse> verses = new List<Verse>();
         private int chapterNumber;
+        private string book;
 
         /**
          * 
          * @param text
          * @param chapterNumber
          */
-        public Chapter(string text, int chapterNumber)
+        public Chapter(string text, int chapterNumber, string book)
         {
             this.chapterNumber = chapterNumber;
+            this.book = book;
             createVerses(text);
         }
 
@@ -42,12 +44,12 @@ namespace BibleReader.Components
                 {
                     string verse = text.Substring(offSet, (temp.Index));
                     text = text.Substring(verse.Length + offSet);
-                    verses.Add(new Verse(verse, chapterNumber, currentVerse));
+                    verses.Add(new Verse(verse, chapterNumber, currentVerse, book));
                 }
                 //this is the last verse of the chapter.
                 else
                 {
-                    verses.Add(new Verse(text.Substring(offSet), chapterNumber, currentVerse));
+                    verses.Add(new Verse(text.Substring(offSet), chapterNumber, currentVerse, book));
                     text = text.Substring(text.Length - 2);
                 }
                 matcher = matcher.NextMatch();

@@ -42,7 +42,7 @@ namespace BibleReader.Bibles
                     }
                     else
                     {
-                        if (currentString.Length == 0) { file.ReadLine(); file.ReadLine(); line = file.ReadLine();/*System.out.println("First Line: '" + line + "'");*/}
+                        if (currentString.Length == 0) { file.ReadLine(); file.ReadLine(); line = file.ReadLine();}
                         count = 0;
                         currentString.Append(" " + line);
                     }
@@ -81,6 +81,11 @@ namespace BibleReader.Bibles
             {
                 return null;
             }
+        }
+
+        public List<Book> getBookRange()
+        {
+            return booksOfTheBible;
         }
 
         public List<Book> getBookRange(List<string> bookNames)

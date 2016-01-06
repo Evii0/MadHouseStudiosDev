@@ -15,8 +15,11 @@ namespace BibleReader.Bibles
 
         Book getBook(string name);
 
+        List<Book> getBookRange();
+
         List<Book> getBookRange(List<string> bookNames);
 
         string getBookName(int index);
+
     }
 }

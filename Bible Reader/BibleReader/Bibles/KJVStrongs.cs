@@ -9,7 +9,7 @@ namespace BibleReader.Bibles
 {
     class KJVStrongs : Bible
     {
-        private List<String> bookNames = new List<String>();
+        private List<string> bookNames = new List<string>();
         private List<Book> booksOfTheBible = new List<Book>();
 
         public bool readBible(string filename)
@@ -17,9 +17,9 @@ namespace BibleReader.Bibles
                 try
                 {
                     System.IO.StreamReader br = new System.IO.StreamReader(filename);
-                    String line = "";
+                    string line = "";
                     StringBuilder currentBook = new StringBuilder();
-                    String currentBookID = "Gen";
+                    string currentBookID = "Gen";
                     int currentIndex = 0;
 
                     while ((line = br.ReadLine()) != null)
@@ -37,7 +37,6 @@ namespace BibleReader.Bibles
                     }
                     booksOfTheBible.Add(new Book(getBookName(currentIndex + 1), currentBook.ToString()));
                     bookNames.Add(getBookName(currentIndex));
-                    Console.WriteLine("Size: " + booksOfTheBible[booksOfTheBible.Count - 1]);
                     return true;
                 }
                 catch (Exception e)
@@ -68,6 +67,11 @@ namespace BibleReader.Bibles
                 {
                     return null;
                 }
+            }
+
+            public List<Book> getBookRange()
+            {
+                return booksOfTheBible;
             }
 
             public List<Book> getBookRange(List<String> bookNames)

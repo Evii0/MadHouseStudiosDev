@@ -27,18 +27,23 @@ namespace BibleReader.Components
                 //there is another chapter after this one
                 if (text.IndexOf(nextChapter) != -1)
                 {
-                    chapters.Add(new Chapter(text.Substring(0, text.IndexOf(nextChapter)), currentChapter));
+                    chapters.Add(new Chapter(text.Substring(0, text.IndexOf(nextChapter)), currentChapter, name));
                     text = text.Substring(text.IndexOf(nextChapter));
                 }
                 //this is the last chapter
                 else
                 {
-                    chapters.Add(new Chapter(text, currentChapter));
+                    chapters.Add(new Chapter(text, currentChapter, name));
                     text = "";
                 }
                 currentChapterstring = nextChapter;
                 currentChapter++;
             }
+        }
+
+        public List<Chapter> getChapters()
+        {
+            return chapters;
         }
 
         public int getNumChapters()
