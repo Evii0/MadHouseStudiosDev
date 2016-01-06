@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,7 +16,12 @@ namespace BibleReader
     public partial class Form1 : Form
     {
 
-        private Bible b;
+        private BibleInterface b;
+        private int currentStartSelectIndex = 0;
+        private int currentEndSelectIndex = 0;
+        private int currentStartVerse = 0;
+        private int currentEndVerse = 0;
+
         public Form1()
         {
             InitializeComponent();
@@ -23,11 +29,8 @@ namespace BibleReader
             b = new KJV();
             b.readBible(@"c:\users\alexanpe\documents\visual studio 2015\Projects\BibleReader\BibleReader\BibleTextDocuments\kjv.txt");
             startup();
-            
-            //richTextBox1.Text =  b.getBook("Psalms").toString();
         }
 
-        
         private void startup()
         {
             //read in from file previous settings and things
@@ -59,134 +62,68 @@ namespace BibleReader
 
         }
 
-        private void searchText()
-        {
-            List<KeyValuePair<Verse, int>> results = new List<KeyValuePair<Verse, int>>();
-            foreach (Book book in b.getBookRange())
-            {
-                foreach (Chapter c in book.getChapters())
-                {
-                    foreach (Verse v in c.getVerses())
-                    {
-                        List<int> res = wordSearch(v.getText().ToLower().ToCharArray(), searchTextBox.Text.ToLower().ToCharArray());
-                        for (int i = 0; i < res.Count; i++)
-                        {
-                            results.Add(new KeyValuePair<Verse, int>(v, res[i]));
-                        }
-                    }
-                }
-            }
-            foreach (KeyValuePair<Verse, int> pair in results)
-            {
-                Console.WriteLine(pair.Key.getBookName() + " " + pair.Key.getChapterNumber() + ":" + pair.Key.getVerseNumber() + "  " + pair.Key.getText());
-            }
-        }
-
-        private List<int> wordSearch(char[] haystack, char[] needle)
-        {
-            List<int> results = new List<int>();
-
-            if (needle.Length == 0)
-            {
-                return null;
-            }
-            int[] charTable = makeCharTable(needle);
-            int[] offsetTable = makeOffsetTable(needle);
-            for (int i = needle.Length - 1, j; i < haystack.Length;)
-            {
-                for (j = needle.Length - 1; needle[j] == haystack[i]; --i, --j)
-                {
-                    if (j == 0)
-                    {
-                        results.Add(i);
-                        break;
-                    }
-                }
-                i += Math.Max(offsetTable[needle.Length - 1 - j], charTable[haystack[i]]);
-            }
-            return results;
-        }
-
-        /**
-        * Makes the jump table based on the mismatched character information.
-        */
-        private static int[] makeCharTable(char[] needle)
-        {
-             int ALPHABET_SIZE = 256;
-            int[] table = new int[ALPHABET_SIZE];
-            for (int i = 0; i < table.Length; ++i)
-            {
-                table[i] = needle.Length;
-            }
-            for (int i = 0; i < needle.Length - 1; ++i)
-            {
-                table[needle[i]] = needle.Length - 1 - i;
-            }
-            return table;
-        }
-
-        /**
-         * Makes the jump table based on the scan offset which mismatch occurs.
-         */
-        private static int[] makeOffsetTable(char[] needle)
-        {
-            int[] table = new int[needle.Length];
-            int lastPrefixPosition = needle.Length;
-            for (int i = needle.Length - 1; i >= 0; --i)
-            {
-                if (isPrefix(needle, i + 1))
-                {
-                    lastPrefixPosition = i + 1;
-                }
-                table[needle.Length - 1 - i] = lastPrefixPosition - i + needle.Length - 1;
-            }
-            for (int i = 0; i < needle.Length - 1; ++i)
-            {
-                int slen = suffixLength(needle, i);
-                table[slen] = needle.Length - 1 - i + slen;
-            }
-            return table;
-        }
-
-        /**
-         * Is needle[p:end] a prefix of needle?
-         */
-        private static bool isPrefix(char[] needle, int p)
-        {
-            for (int i = p, j = 0; i < needle.Length; ++i, ++j)
-            {
-                if (needle[i] != needle[j])
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        /**
-         * Returns the maximum Length of the substring ends at p and is a suffix.
-         */
-        private static int suffixLength(char[] needle, int p)
-        {
-            int len = 0;
-            for (int i = p, j = needle.Length - 1;
-                     i >= 0 && needle[i] == needle[j]; --i, --j)
-            {
-                len += 1;
-            }
-            return len;
-        }
+        
 
         private void button1_Click(object sender, EventArgs e)
         {
-            searchText();
-        }
-
-        
+            foreach (KeyValuePair<Verse, int> pair in b.searchText(searchTextBox.Text))
+            {
+                Console.WriteLine(pair.Key.getBookName() + " " + pair.Key.getChapterNumber() + ":" + pair.Key.getVerseNumber() + "  " + pair.Key.getText());
+            }
+        }     
 
         private void searchTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == '\r') { searchText(); e.Handled = true; }
+            if (e.KeyChar == '\r') {
+                foreach (KeyValuePair<Verse, int> pair in b.searchText(searchTextBox.Text))
+                {
+                    Console.WriteLine(pair.Key.getBookName() + " " + pair.Key.getChapterNumber() + ":" + pair.Key.getVerseNumber() + "  " + pair.Key.getText());
+                }
+                e.Handled = true;
+            }
+        }
+
+        private void richTextBox1_SelectionChanged(object sender, EventArgs e)
+        {
+            //start index has changed
+            if (richTextBox1.SelectionStart != currentStartSelectIndex)
+            {
+                currentStartSelectIndex = richTextBox1.SelectionStart;
+                currentStartVerse = getCurrentVerse(currentStartSelectIndex);
+                Console.WriteLine("Starting verse: " + currentStartVerse);
+            }
+
+            //end index has changed but is the same as the start index
+            if (richTextBox1.SelectionLength == 0) { currentEndSelectIndex = currentStartSelectIndex; currentEndVerse = currentStartVerse; Console.WriteLine("Ending verse: " + currentEndVerse); }
+
+            //end index has changed and is different
+            else if ((richTextBox1.SelectionStart + richTextBox1.SelectionLength) != currentEndSelectIndex)
+            {
+                currentEndSelectIndex = richTextBox1.SelectionStart + richTextBox1.SelectionLength;
+                currentEndVerse = getCurrentVerse(currentEndSelectIndex);
+                Console.WriteLine("Ending verse: " + currentEndVerse);
+            }
+        }
+
+        /// <summary>
+        /// gets the verse that contains the given index.
+        /// </summary>
+        /// <param name="index">index selected in the rich text box</param>
+        /// <returns>an int denoting the verse selected</returns>
+        private int getCurrentVerse(int index)
+        {
+            int indexOfVerse = Regex.Match(richTextBox1.Text.Substring(0, richTextBox1.SelectionStart), "(" + chapterNumbersListBox.SelectedItem + ":)\\d+", RegexOptions.RightToLeft).Index;
+            string[] temp = richTextBox1.Text.Substring(indexOfVerse, 10).Split(' ');
+            int currentVerse = Convert.ToInt32(temp[0].Split(':')[1]);
+
+            //get current line
+            int line = richTextBox1.GetLineFromCharIndex(index);
+
+            // Get current column.
+            int firstChar = richTextBox1.GetFirstCharIndexFromLine(line);
+            if (index - firstChar < 3) currentVerse++;
+
+            return currentVerse;
         }
     }
 }

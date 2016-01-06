@@ -36,8 +36,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -57,6 +57,7 @@
             this.richTextBox1.Size = new System.Drawing.Size(1058, 816);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
+            this.richTextBox1.SelectionChanged += new System.EventHandler(this.richTextBox1_SelectionChanged);
             // 
             // booksOfBibleListBox
             // 
@@ -205,6 +206,16 @@
             this.panel2.Size = new System.Drawing.Size(314, 371);
             this.panel2.TabIndex = 6;
             // 
+            // richTextBox3
+            // 
+            this.richTextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.richTextBox3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.richTextBox3.Location = new System.Drawing.Point(4, 72);
+            this.richTextBox3.Name = "richTextBox3";
+            this.richTextBox3.Size = new System.Drawing.Size(306, 52);
+            this.richTextBox3.TabIndex = 1;
+            this.richTextBox3.Text = "";
+            // 
             // richTextBox2
             // 
             this.richTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -215,16 +226,6 @@
             this.richTextBox2.TabIndex = 0;
             this.richTextBox2.Text = "Genesis 37:25  ...Gilead with their camels bearing spicery and balm and myrrh, go" +
     "ing to carry it down to Egypt.";
-            // 
-            // richTextBox3
-            // 
-            this.richTextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.richTextBox3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.richTextBox3.Location = new System.Drawing.Point(4, 72);
-            this.richTextBox3.Name = "richTextBox3";
-            this.richTextBox3.Size = new System.Drawing.Size(306, 52);
-            this.richTextBox3.TabIndex = 1;
-            this.richTextBox3.Text = "";
             // 
             // Form1
             // 

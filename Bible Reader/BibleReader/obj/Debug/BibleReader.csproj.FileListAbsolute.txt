@@ -7,3 +7,12 @@ c:\users\alexanpe\documents\visual studio 2015\Projects\BibleReader\BibleReader\
 c:\users\alexanpe\documents\visual studio 2015\Projects\BibleReader\BibleReader\obj\Debug\BibleReader.csproj.GenerateResource.Cache
 c:\users\alexanpe\documents\visual studio 2015\Projects\BibleReader\BibleReader\obj\Debug\BibleReader.exe
 c:\users\alexanpe\documents\visual studio 2015\Projects\BibleReader\BibleReader\obj\Debug\BibleReader.pdb
+C:\Users\alexanpe\Documents\MadHouseStudiosDev\Bible Reader\BibleReader\bin\Debug\BibleReader.exe.config
+C:\Users\alexanpe\Documents\MadHouseStudiosDev\Bible Reader\BibleReader\obj\Debug\BibleReader.exe
+C:\Users\alexanpe\Documents\MadHouseStudiosDev\Bible Reader\BibleReader\obj\Debug\BibleReader.pdb
+C:\Users\alexanpe\Documents\MadHouseStudiosDev\Bible Reader\BibleReader\bin\Debug\BibleReader.exe
+C:\Users\alexanpe\Documents\MadHouseStudiosDev\Bible Reader\BibleReader\bin\Debug\BibleReader.pdb
+C:\Users\alexanpe\Documents\MadHouseStudiosDev\Bible Reader\BibleReader\obj\Debug\BibleReader.csprojResolveAssemblyReference.cache
+C:\Users\alexanpe\Documents\MadHouseStudiosDev\Bible Reader\BibleReader\obj\Debug\BibleReader.Form1.resources
+C:\Users\alexanpe\Documents\MadHouseStudiosDev\Bible Reader\BibleReader\obj\Debug\BibleReader.Properties.Resources.resources
+C:\Users\alexanpe\Documents\MadHouseStudiosDev\Bible Reader\BibleReader\obj\Debug\BibleReader.csproj.GenerateResource.Cache

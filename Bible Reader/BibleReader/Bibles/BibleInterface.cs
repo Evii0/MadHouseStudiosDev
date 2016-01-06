@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BibleReader.Bibles
 {
-    interface Bible
+    interface BibleInterface
     {
         bool readBible(string filename);
 
@@ -21,5 +21,6 @@ namespace BibleReader.Bibles
 
         string getBookName(int index);
 
+        List<KeyValuePair<Verse, int>> searchText(string text);
     }
 }
