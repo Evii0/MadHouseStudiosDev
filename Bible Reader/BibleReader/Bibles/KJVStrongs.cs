@@ -14,7 +14,7 @@ namespace BibleReader.Bibles
 
         public bool readBible(string filename)
             {
-                try
+            try
                 {
                     System.IO.StreamReader br = new System.IO.StreamReader(filename);
                     string line = "";
@@ -24,16 +24,16 @@ namespace BibleReader.Bibles
 
                     while ((line = br.ReadLine()) != null)
                     {
-                        if (line.Split(' ')[0].CompareTo(currentBookID) == 0) currentBook.Append(" " + line.Substring(4));
+                        if (line.Substring(0,3).CompareTo(currentBookID) == 0) currentBook.Append(" " + line.Substring(4));
                         else
                         {
                             currentBookID = line.Split(' ')[0];
-                            //System.out.println(currentBookID);
-                            booksOfTheBible.Add(new Book(getBookName(currentIndex + 1), currentBook.ToString()));
-                            currentBook = new StringBuilder();
+                            booksOfTheBible.Add(new Book(getBookName(currentIndex + 1), currentBook.ToString()));    
                             currentIndex++;
                             bookNames.Add(getBookName(currentIndex));
-                        }
+                            currentBook = new StringBuilder();
+                            currentBook.Append(" " + line.Substring(4));
+                    }
                     }
                     booksOfTheBible.Add(new Book(getBookName(currentIndex + 1), currentBook.ToString()));
                     bookNames.Add(getBookName(currentIndex));

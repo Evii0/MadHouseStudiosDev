@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bibles\Bible.cs" />
+    <Compile Include="Bibles\BibleInterface.cs" />
     <Compile Include="Bibles\KJVStrongs.cs" />
     <Compile Include="Bibles\KJV.cs" />
     <Compile Include="Components\Book.cs" />
@@ -88,6 +88,7 @@
   <ItemGroup>
     <Content Include="BibleTextDocuments\kjv.txt" />
     <Content Include="BibleTextDocuments\kjvplus.txt" />
+    <Content Include="settings.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

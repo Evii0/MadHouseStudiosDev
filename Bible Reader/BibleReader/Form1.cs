@@ -15,26 +15,69 @@ namespace BibleReader
 {
     public partial class Form1 : Form
     {
-
         private BibleInterface b;
+        private Dictionary<string, string> bibleFiles = new Dictionary<string, string>();
         private int currentStartSelectIndex = 0;
         private int currentEndSelectIndex = 0;
         private int currentStartVerse = 0;
         private int currentEndVerse = 0;
 
+        //may or may not use this to store different bibles, fine if only a few bible versions, not so much if there are 40+...
+        private Dictionary<string, BibleInterface> bibles = new Dictionary<string, BibleInterface>();
+
         public Form1()
         {
             InitializeComponent();
-            
-            b = new KJV();
-            b.readBible(@"c:\users\alexanpe\documents\visual studio 2015\Projects\BibleReader\BibleReader\BibleTextDocuments\kjv.txt");
             startup();
         }
 
         private void startup()
         {
-            //read in from file previous settings and things
-            booksOfBibleListBox.SelectedIndex = 0;
+            //TODO: read in from file previous settings, bible options and things
+            System.IO.StreamReader file = new System.IO.StreamReader(@"C:\Users\alexanpe\Documents\MadHouseStudiosDev\Bible Reader\BibleReader\settings.txt");
+            string line = "";
+            while ((line = file.ReadLine()) != null)
+            {
+                string[] temp = line.Split('=');
+                if (temp[0] == "bibles")
+                {
+                    string[] bibleList = temp[1].Split(';');
+                    foreach(string s in bibleList)
+                    {
+                        string[] currentBible = s.Split(',');
+                        bibleFiles.Add(currentBible[0], currentBible[1]);
+                        bibles.Add(currentBible[0], readBible(currentBible[0], currentBible[1]));
+                    }
+                }
+                else if (temp[0] == "bible") b = bibles[temp[1]];
+                else if(temp[0] == "place")
+                {
+                    string[] verse = temp[1].Split(',');
+                    booksOfBibleListBox.SelectedIndex = Convert.ToInt32(verse[0]);
+                    chapterNumbersListBox.SelectedIndex = Convert.ToInt32(verse[1]);
+                }
+            }
+
+            booksOfBibleListBox.SelectedIndex = 0;      
+        }
+
+        private BibleInterface readBible(string name, string filePath)
+        {
+            BibleInterface b1 = null;
+            switch (name)
+            {
+                case "King James Version (KJV)":
+                    Console.WriteLine("normal");
+                    b1 = new KJV();
+                    b1.readBible(filePath);
+                    break;
+                case "King James Version (KJV) - With Strongs' numbers":
+                    Console.WriteLine("strongs");
+                    b1 = new KJVStrongs();
+                    b1.readBible(filePath);
+                    break;
+            }
+            return b1;
         }
 
         private void booksOfBibleListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -124,6 +167,12 @@ namespace BibleReader
             if (index - firstChar < 3) currentVerse++;
 
             return currentVerse;
+        }
+
+        private void bibleListComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            b = bibles[bibleListComboBox.Text];
+            richTextBox1.Text = b.getBook(booksOfBibleListBox.SelectedIndex).getChapter(chapterNumbersListBox.SelectedIndex + 1).toString();
         }
     }
 }

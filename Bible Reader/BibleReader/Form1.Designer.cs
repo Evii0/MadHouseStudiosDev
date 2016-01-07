@@ -38,33 +38,32 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.bibleListComboBox = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox1.BackColor = System.Drawing.Color.White;
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.richTextBox1.DetectUrls = false;
             this.richTextBox1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox1.Location = new System.Drawing.Point(213, 51);
+            this.richTextBox1.Location = new System.Drawing.Point(213, 41);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(1058, 816);
+            this.richTextBox1.Size = new System.Drawing.Size(1058, 860);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             this.richTextBox1.SelectionChanged += new System.EventHandler(this.richTextBox1_SelectionChanged);
             // 
             // booksOfBibleListBox
             // 
-            this.booksOfBibleListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.booksOfBibleListBox.Font = new System.Drawing.Font("Calibri", 10.5F);
             this.booksOfBibleListBox.FormattingEnabled = true;
-            this.booksOfBibleListBox.ItemHeight = 14;
+            this.booksOfBibleListBox.ItemHeight = 17;
             this.booksOfBibleListBox.Items.AddRange(new object[] {
             "Genesis",
             "Exodus",
@@ -132,32 +131,31 @@
             "3 John",
             "Jude",
             "Revelation"});
-            this.booksOfBibleListBox.Location = new System.Drawing.Point(12, 51);
+            this.booksOfBibleListBox.Location = new System.Drawing.Point(12, 13);
             this.booksOfBibleListBox.Name = "booksOfBibleListBox";
-            this.booksOfBibleListBox.Size = new System.Drawing.Size(121, 816);
+            this.booksOfBibleListBox.Size = new System.Drawing.Size(121, 888);
             this.booksOfBibleListBox.TabIndex = 1;
             this.booksOfBibleListBox.SelectedIndexChanged += new System.EventHandler(this.booksOfBibleListBox_SelectedIndexChanged);
             // 
             // chapterNumbersListBox
             // 
-            this.chapterNumbersListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.chapterNumbersListBox.Font = new System.Drawing.Font("Calibri", 10.5F);
             this.chapterNumbersListBox.FormattingEnabled = true;
-            this.chapterNumbersListBox.ItemHeight = 14;
-            this.chapterNumbersListBox.Location = new System.Drawing.Point(139, 51);
+            this.chapterNumbersListBox.ItemHeight = 17;
+            this.chapterNumbersListBox.Location = new System.Drawing.Point(139, 13);
             this.chapterNumbersListBox.Name = "chapterNumbersListBox";
-            this.chapterNumbersListBox.Size = new System.Drawing.Size(68, 816);
+            this.chapterNumbersListBox.Size = new System.Drawing.Size(68, 888);
             this.chapterNumbersListBox.TabIndex = 2;
             this.chapterNumbersListBox.SelectedIndexChanged += new System.EventHandler(this.chapterNumbersListBox_SelectedIndexChanged);
             // 
             // searchTextBox
             // 
             this.searchTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.searchTextBox.Font = new System.Drawing.Font("Calibri", 12F);
+            this.searchTextBox.Font = new System.Drawing.Font("Calibri", 11F);
             this.searchTextBox.ForeColor = System.Drawing.Color.Black;
-            this.searchTextBox.Location = new System.Drawing.Point(6, 2);
+            this.searchTextBox.Location = new System.Drawing.Point(6, 3);
             this.searchTextBox.Name = "searchTextBox";
-            this.searchTextBox.Size = new System.Drawing.Size(238, 20);
+            this.searchTextBox.Size = new System.Drawing.Size(238, 18);
             this.searchTextBox.TabIndex = 3;
             this.searchTextBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.searchTextBox_MouseClick);
             this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
@@ -165,17 +163,16 @@
             // 
             // button1
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackColor = System.Drawing.Color.IndianRed;
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(1181, 14);
+            this.button1.Location = new System.Drawing.Point(1181, 9);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(88, 29);
+            this.button1.Size = new System.Drawing.Size(88, 26);
             this.button1.TabIndex = 4;
             this.button1.Text = "SEARCH";
             this.button1.UseVisualStyleBackColor = false;
@@ -183,14 +180,13 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.searchTextBox);
-            this.panel1.Location = new System.Drawing.Point(936, 14);
+            this.panel1.Location = new System.Drawing.Point(885, 9);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(245, 29);
+            this.panel1.Size = new System.Drawing.Size(296, 26);
             this.panel1.TabIndex = 5;
             // 
             // panel2
@@ -201,10 +197,11 @@
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.richTextBox3);
             this.panel2.Controls.Add(this.richTextBox2);
-            this.panel2.Location = new System.Drawing.Point(936, 43);
+            this.panel2.Location = new System.Drawing.Point(885, 71);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(314, 371);
             this.panel2.TabIndex = 6;
+            this.panel2.Visible = false;
             // 
             // richTextBox3
             // 
@@ -227,12 +224,26 @@
             this.richTextBox2.Text = "Genesis 37:25  ...Gilead with their camels bearing spicery and balm and myrrh, go" +
     "ing to carry it down to Egypt.";
             // 
+            // bibleListComboBox
+            // 
+            this.bibleListComboBox.FormattingEnabled = true;
+            this.bibleListComboBox.Items.AddRange(new object[] {
+            "King James Version (KJV)",
+            "King James Version (KJV) - With Strongs\' numbers"});
+            this.bibleListComboBox.Location = new System.Drawing.Point(213, 13);
+            this.bibleListComboBox.Name = "bibleListComboBox";
+            this.bibleListComboBox.Size = new System.Drawing.Size(279, 22);
+            this.bibleListComboBox.TabIndex = 7;
+            this.bibleListComboBox.Text = "King James Version (KJV)";
+            this.bibleListComboBox.SelectedIndexChanged += new System.EventHandler(this.bibleListComboBox_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1283, 881);
+            this.ClientSize = new System.Drawing.Size(1283, 911);
+            this.Controls.Add(this.bibleListComboBox);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.button1);
@@ -261,6 +272,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.RichTextBox richTextBox3;
         private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.ComboBox bibleListComboBox;
     }
 }
 
