@@ -105,23 +105,58 @@ namespace BibleReader
 
         }
 
-        
+        private void selectVerse(int verse)
+        {
+
+        }
+
+        private void displaySearchResults(List<KeyValuePair<Verse, int>> res)
+        {
+            searchResultsPanel.Controls.Clear();
+            searchResultsPanel.Visible = true;
+            int count = 0;
+            foreach (KeyValuePair<Verse, int> pair in res)
+            {
+                if (count > 25) break;
+                RichTextBox temp = new RichTextBox();
+                searchResultsPanel.Controls.Add(temp);
+                temp.Height = 57;
+                temp.Width = 327;
+                temp.Location = new Point(4, ((count) * 61) + 6);
+                temp.Text = pair.Key.getBookName() + " " + pair.Key.getChapterNumber() + ":" + pair.Key.getVerseNumber() + "  " + pair.Key.getText();
+                temp.Cursor = Cursors.Hand;
+                temp.Click += new EventHandler(searchResult_Click);
+                count++;
+            }
+            Panel moreResultsPanel = new Panel();
+            Label moreResultsLabel = new Label();
+            moreResultsPanel.Width = 336;
+            moreResultsPanel.Height = 30;
+            moreResultsPanel.Location = new Point(-1, ((count) * 61) + 6);
+            moreResultsPanel.BackColor = Color.DarkGray;
+            moreResultsPanel.Controls.Add(moreResultsLabel);
+            moreResultsPanel.Cursor = Cursors.Hand;
+            
+            moreResultsLabel.Location = new Point(130, 5);
+            moreResultsLabel.Text = "MoreResults...";
+            moreResultsLabel.Font = new Font(new FontFamily("Calibri"), 11, FontStyle.Regular);
+            moreResultsLabel.ForeColor = Color.White;
+            moreResultsLabel.Cursor = Cursors.Hand;
+
+            searchResultsPanel.Controls.Add(moreResultsPanel);
+
+
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            foreach (KeyValuePair<Verse, int> pair in b.searchText(searchTextBox.Text))
-            {
-                Console.WriteLine(pair.Key.getBookName() + " " + pair.Key.getChapterNumber() + ":" + pair.Key.getVerseNumber() + "  " + pair.Key.getText());
-            }
+            displaySearchResults(b.searchText(searchTextBox.Text));
         }     
 
         private void searchTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == '\r') {
-                foreach (KeyValuePair<Verse, int> pair in b.searchText(searchTextBox.Text))
-                {
-                    Console.WriteLine(pair.Key.getBookName() + " " + pair.Key.getChapterNumber() + ":" + pair.Key.getVerseNumber() + "  " + pair.Key.getText());
-                }
+                displaySearchResults(b.searchText(searchTextBox.Text));
                 e.Handled = true;
             }
         }
@@ -169,10 +204,41 @@ namespace BibleReader
             return currentVerse;
         }
 
+        private void searchResult_Click(object sender, EventArgs e)
+        {
+            RichTextBox temp = sender as RichTextBox;
+            string[] mainSplit = temp.Text.Split(' ');
+            string[] chapterVerse = mainSplit[1].Split(':');
+            booksOfBibleListBox.SelectedIndex = getBookNumber(mainSplit[0]);
+            chapterNumbersListBox.SelectedIndex = Convert.ToInt32(chapterVerse[0]) - 1;
+            searchResultsPanel.Visible = false;
+        }
+
+        private int getBookNumber(string name)
+        {
+            int count = 0;
+            foreach(Book bo in b.getBookRange())
+            {
+                if (bo.getName() == name) return count;
+                count++;
+            }
+            return -1;
+        }
+
         private void bibleListComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             b = bibles[bibleListComboBox.Text];
             richTextBox1.Text = b.getBook(booksOfBibleListBox.SelectedIndex).getChapter(chapterNumbersListBox.SelectedIndex + 1).toString();
+        }
+
+        private void richTextBox1_Click(object sender, EventArgs e)
+        {
+            searchResultsPanel.Visible = false;
+        }
+
+        private void Form1_Click(object sender, EventArgs e)
+        {
+            searchResultsPanel.Visible = false;
         }
     }
 }

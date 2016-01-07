@@ -35,12 +35,9 @@
             this.searchTextBox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.searchResultsPanel = new System.Windows.Forms.Panel();
             this.bibleListComboBox = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -58,6 +55,7 @@
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             this.richTextBox1.SelectionChanged += new System.EventHandler(this.richTextBox1_SelectionChanged);
+            this.richTextBox1.Click += new System.EventHandler(this.richTextBox1_Click);
             // 
             // booksOfBibleListBox
             // 
@@ -135,6 +133,7 @@
             this.booksOfBibleListBox.Name = "booksOfBibleListBox";
             this.booksOfBibleListBox.Size = new System.Drawing.Size(121, 888);
             this.booksOfBibleListBox.TabIndex = 1;
+            this.booksOfBibleListBox.Click += new System.EventHandler(this.Form1_Click);
             this.booksOfBibleListBox.SelectedIndexChanged += new System.EventHandler(this.booksOfBibleListBox_SelectedIndexChanged);
             // 
             // chapterNumbersListBox
@@ -146,6 +145,7 @@
             this.chapterNumbersListBox.Name = "chapterNumbersListBox";
             this.chapterNumbersListBox.Size = new System.Drawing.Size(68, 888);
             this.chapterNumbersListBox.TabIndex = 2;
+            this.chapterNumbersListBox.Click += new System.EventHandler(this.Form1_Click);
             this.chapterNumbersListBox.SelectedIndexChanged += new System.EventHandler(this.chapterNumbersListBox_SelectedIndexChanged);
             // 
             // searchTextBox
@@ -189,40 +189,17 @@
             this.panel1.Size = new System.Drawing.Size(296, 26);
             this.panel1.TabIndex = 5;
             // 
-            // panel2
+            // searchResultsPanel
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.searchResultsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.AutoScroll = true;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.richTextBox3);
-            this.panel2.Controls.Add(this.richTextBox2);
-            this.panel2.Location = new System.Drawing.Point(885, 71);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(314, 371);
-            this.panel2.TabIndex = 6;
-            this.panel2.Visible = false;
-            // 
-            // richTextBox3
-            // 
-            this.richTextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.richTextBox3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.richTextBox3.Location = new System.Drawing.Point(4, 72);
-            this.richTextBox3.Name = "richTextBox3";
-            this.richTextBox3.Size = new System.Drawing.Size(306, 52);
-            this.richTextBox3.TabIndex = 1;
-            this.richTextBox3.Text = "";
-            // 
-            // richTextBox2
-            // 
-            this.richTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.richTextBox2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.richTextBox2.Location = new System.Drawing.Point(4, 8);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(306, 52);
-            this.richTextBox2.TabIndex = 0;
-            this.richTextBox2.Text = "Genesis 37:25  ...Gilead with their camels bearing spicery and balm and myrrh, go" +
-    "ing to carry it down to Egypt.";
+            this.searchResultsPanel.AutoScroll = true;
+            this.searchResultsPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.searchResultsPanel.Location = new System.Drawing.Point(885, 35);
+            this.searchResultsPanel.Name = "searchResultsPanel";
+            this.searchResultsPanel.Size = new System.Drawing.Size(354, 489);
+            this.searchResultsPanel.TabIndex = 6;
+            this.searchResultsPanel.Visible = false;
             // 
             // bibleListComboBox
             // 
@@ -236,6 +213,7 @@
             this.bibleListComboBox.TabIndex = 7;
             this.bibleListComboBox.Text = "King James Version (KJV)";
             this.bibleListComboBox.SelectedIndexChanged += new System.EventHandler(this.bibleListComboBox_SelectedIndexChanged);
+            this.bibleListComboBox.Click += new System.EventHandler(this.Form1_Click);
             // 
             // Form1
             // 
@@ -244,7 +222,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1283, 911);
             this.Controls.Add(this.bibleListComboBox);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.searchResultsPanel);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.chapterNumbersListBox);
@@ -254,9 +232,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Bible Reader";
+            this.Click += new System.EventHandler(this.Form1_Click);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -269,9 +247,7 @@
         private System.Windows.Forms.TextBox searchTextBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.RichTextBox richTextBox3;
-        private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.Panel searchResultsPanel;
         private System.Windows.Forms.ComboBox bibleListComboBox;
     }
 }
