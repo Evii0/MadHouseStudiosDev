@@ -37,7 +37,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.searchResultsPanel = new System.Windows.Forms.Panel();
             this.bibleListComboBox = new System.Windows.Forms.ComboBox();
+            this.moreResultsLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            this.searchResultsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -145,7 +147,7 @@
             this.chapterNumbersListBox.Name = "chapterNumbersListBox";
             this.chapterNumbersListBox.Size = new System.Drawing.Size(68, 888);
             this.chapterNumbersListBox.TabIndex = 2;
-            this.chapterNumbersListBox.Click += new System.EventHandler(this.Form1_Click);
+            this.chapterNumbersListBox.Click += new System.EventHandler(this.chapterNumbersListBox_Click);
             this.chapterNumbersListBox.SelectedIndexChanged += new System.EventHandler(this.chapterNumbersListBox_SelectedIndexChanged);
             // 
             // searchTextBox
@@ -195,6 +197,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.searchResultsPanel.AutoScroll = true;
             this.searchResultsPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.searchResultsPanel.Controls.Add(this.moreResultsLabel);
             this.searchResultsPanel.Location = new System.Drawing.Point(885, 35);
             this.searchResultsPanel.Name = "searchResultsPanel";
             this.searchResultsPanel.Size = new System.Drawing.Size(354, 489);
@@ -214,6 +217,16 @@
             this.bibleListComboBox.Text = "King James Version (KJV)";
             this.bibleListComboBox.SelectedIndexChanged += new System.EventHandler(this.bibleListComboBox_SelectedIndexChanged);
             this.bibleListComboBox.Click += new System.EventHandler(this.Form1_Click);
+            // 
+            // moreResultsLabel
+            // 
+            this.moreResultsLabel.AutoSize = true;
+            this.moreResultsLabel.Location = new System.Drawing.Point(140, 456);
+            this.moreResultsLabel.Name = "moreResultsLabel";
+            this.moreResultsLabel.Size = new System.Drawing.Size(88, 14);
+            this.moreResultsLabel.TabIndex = 0;
+            this.moreResultsLabel.Text = "More Results...";
+            this.moreResultsLabel.Visible = false;
             // 
             // Form1
             // 
@@ -235,6 +248,8 @@
             this.Click += new System.EventHandler(this.Form1_Click);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.searchResultsPanel.ResumeLayout(false);
+            this.searchResultsPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -249,6 +264,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel searchResultsPanel;
         private System.Windows.Forms.ComboBox bibleListComboBox;
+        private System.Windows.Forms.Label moreResultsLabel;
     }
 }
 

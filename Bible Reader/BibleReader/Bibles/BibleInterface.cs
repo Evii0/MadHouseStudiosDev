@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BibleReader.Bibles
 {
@@ -22,5 +23,7 @@ namespace BibleReader.Bibles
         string getBookName(int index);
 
         List<KeyValuePair<Verse, int>> searchText(string text);
+
+        void displayText(RichTextBox r, string book, int chapter);
     }
 }

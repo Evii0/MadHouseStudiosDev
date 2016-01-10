@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BibleReader.Bibles
 {
@@ -57,6 +58,11 @@ namespace BibleReader.Bibles
                 Console.WriteLine(e);
                 return false;
             }
+        }
+
+        public void displayText(RichTextBox r, string book, int chapter)
+        {
+            r.Text = getBook(book).getChapter(chapter).toString();
         }
 
         public List<KeyValuePair<Verse, int>> searchText(string text)

@@ -22,6 +22,8 @@ namespace BibleReader
         private int currentStartVerse = 0;
         private int currentEndVerse = 0;
 
+        private bool chapterNumbersClicked = false;
+
         //may or may not use this to store different bibles, fine if only a few bible versions, not so much if there are 40+...
         private Dictionary<string, BibleInterface> bibles = new Dictionary<string, BibleInterface>();
 
@@ -50,15 +52,15 @@ namespace BibleReader
                     }
                 }
                 else if (temp[0] == "bible") b = bibles[temp[1]];
-                else if(temp[0] == "place")
+                else if (temp[0] == "place")
                 {
                     string[] verse = temp[1].Split(',');
                     booksOfBibleListBox.SelectedIndex = Convert.ToInt32(verse[0]);
                     chapterNumbersListBox.SelectedIndex = Convert.ToInt32(verse[1]);
                 }
             }
-
-            booksOfBibleListBox.SelectedIndex = 0;      
+            booksOfBibleListBox.SelectedIndex = 0;
+            b.displayText(richTextBox1, booksOfBibleListBox.Text, chapterNumbersListBox.SelectedIndex + 1);
         }
 
         private BibleInterface readBible(string name, string filePath)
@@ -92,7 +94,11 @@ namespace BibleReader
 
         private void chapterNumbersListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            richTextBox1.Text = b.getBook(booksOfBibleListBox.SelectedIndex).getChapter(chapterNumbersListBox.SelectedIndex + 1).toString();
+            if (chapterNumbersClicked)
+            {
+                b.displayText(richTextBox1, booksOfBibleListBox.Text, chapterNumbersListBox.SelectedIndex + 1);
+                chapterNumbersClicked = false;
+            }
         }
 
         private void searchTextBox_MouseClick(object sender, MouseEventArgs e)
@@ -129,23 +135,32 @@ namespace BibleReader
                 count++;
             }
             Panel moreResultsPanel = new Panel();
-            Label moreResultsLabel = new Label();
             moreResultsPanel.Width = 336;
             moreResultsPanel.Height = 30;
             moreResultsPanel.Location = new Point(-1, ((count) * 61) + 6);
             moreResultsPanel.BackColor = Color.DarkGray;
             moreResultsPanel.Controls.Add(moreResultsLabel);
             moreResultsPanel.Cursor = Cursors.Hand;
+            moreResultsPanel.Click += new EventHandler(moreResults_Click);
             
-            moreResultsLabel.Location = new Point(130, 5);
-            moreResultsLabel.Text = "MoreResults...";
+            moreResultsLabel.Location = new Point(120, 5);
             moreResultsLabel.Font = new Font(new FontFamily("Calibri"), 11, FontStyle.Regular);
             moreResultsLabel.ForeColor = Color.White;
             moreResultsLabel.Cursor = Cursors.Hand;
+            moreResultsLabel.Click += new EventHandler(moreResults_Click);
+            moreResultsLabel.Visible = true;
 
             searchResultsPanel.Controls.Add(moreResultsPanel);
+        }
 
-
+        /// <summary>
+        /// opens new window with full search results
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void moreResults_Click(object sender, EventArgs e)
+        {
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -234,6 +249,12 @@ namespace BibleReader
         private void richTextBox1_Click(object sender, EventArgs e)
         {
             searchResultsPanel.Visible = false;
+        }
+
+        private void chapterNumbersListBox_Click(object sender, EventArgs e)
+        {
+            searchResultsPanel.Visible = false;
+            chapterNumbersClicked = true;
         }
 
         private void Form1_Click(object sender, EventArgs e)
