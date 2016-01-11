@@ -24,6 +24,6 @@ namespace BibleReader.Bibles
 
         List<KeyValuePair<Verse, int>> searchText(string text);
 
-        void displayText(RichTextBox r, string book, int chapter);
+        void displayText(RichTextBox r, int book, int chapter);
     }
 }

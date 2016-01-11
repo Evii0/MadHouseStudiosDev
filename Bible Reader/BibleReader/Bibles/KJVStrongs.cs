@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -46,9 +47,25 @@ namespace BibleReader.Bibles
                 }
             }
 
-        public void displayText(RichTextBox r, string book, int chapter)
+        public void displayText(RichTextBox r, int book, int chapter)
         {
+            string text = getBook(book).getChapter(chapter).ToString();
+            string regex = "(";
+            if (book < 40) regex += "H";
+            else regex += "G";
+            regex += ")\\d+";
 
+            Regex id = new Regex(regex);
+            Match matcher = id.Match(text);
+
+            r.Text = text;
+            while (matcher.Success)
+            {            
+                r.Select(matcher.Index, matcher.Length);
+                r.SelectionFont = new System.Drawing.Font("Calibri", 8);
+                r.SelectionColor = System.Drawing.Color.LightSeaGreen;
+                matcher = matcher.NextMatch();
+            }
         }
 
         public List<KeyValuePair<Verse, int>> searchText(string text)

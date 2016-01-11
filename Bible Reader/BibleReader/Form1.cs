@@ -60,7 +60,7 @@ namespace BibleReader
                 }
             }
             booksOfBibleListBox.SelectedIndex = 0;
-            b.displayText(richTextBox1, booksOfBibleListBox.Text, chapterNumbersListBox.SelectedIndex + 1);
+            b.displayText(richTextBox1, booksOfBibleListBox.SelectedIndex, chapterNumbersListBox.SelectedIndex + 1);
         }
 
         private BibleInterface readBible(string name, string filePath)
@@ -96,7 +96,7 @@ namespace BibleReader
         {
             if (chapterNumbersClicked)
             {
-                b.displayText(richTextBox1, booksOfBibleListBox.Text, chapterNumbersListBox.SelectedIndex + 1);
+                b.displayText(richTextBox1, booksOfBibleListBox.SelectedIndex, chapterNumbersListBox.SelectedIndex + 1);
                 chapterNumbersClicked = false;
             }
         }
@@ -183,18 +183,16 @@ namespace BibleReader
             {
                 currentStartSelectIndex = richTextBox1.SelectionStart;
                 currentStartVerse = getCurrentVerse(currentStartSelectIndex);
-                Console.WriteLine("Starting verse: " + currentStartVerse);
             }
 
             //end index has changed but is the same as the start index
-            if (richTextBox1.SelectionLength == 0) { currentEndSelectIndex = currentStartSelectIndex; currentEndVerse = currentStartVerse; Console.WriteLine("Ending verse: " + currentEndVerse); }
+            if (richTextBox1.SelectionLength == 0) { currentEndSelectIndex = currentStartSelectIndex; currentEndVerse = currentStartVerse; }
 
             //end index has changed and is different
             else if ((richTextBox1.SelectionStart + richTextBox1.SelectionLength) != currentEndSelectIndex)
             {
                 currentEndSelectIndex = richTextBox1.SelectionStart + richTextBox1.SelectionLength;
                 currentEndVerse = getCurrentVerse(currentEndSelectIndex);
-                Console.WriteLine("Ending verse: " + currentEndVerse);
             }
         }
 
@@ -243,7 +241,7 @@ namespace BibleReader
         private void bibleListComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             b = bibles[bibleListComboBox.Text];
-            richTextBox1.Text = b.getBook(booksOfBibleListBox.SelectedIndex).getChapter(chapterNumbersListBox.SelectedIndex + 1).toString();
+            b.displayText(richTextBox1, booksOfBibleListBox.SelectedIndex, chapterNumbersListBox.SelectedIndex + 1);
         }
 
         private void richTextBox1_Click(object sender, EventArgs e)

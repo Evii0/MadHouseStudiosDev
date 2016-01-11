@@ -36,8 +36,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.searchResultsPanel = new System.Windows.Forms.Panel();
-            this.bibleListComboBox = new System.Windows.Forms.ComboBox();
             this.moreResultsLabel = new System.Windows.Forms.Label();
+            this.bibleListComboBox = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.searchResultsPanel.SuspendLayout();
             this.SuspendLayout();
@@ -50,12 +50,14 @@
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.richTextBox1.DetectUrls = false;
             this.richTextBox1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.richTextBox1.Location = new System.Drawing.Point(213, 41);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(1058, 860);
+            this.richTextBox1.Size = new System.Drawing.Size(1343, 860);
             this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.richTextBox1.Text = "putting some terrible text in this box\nThey were not in the storm because they ha" +
+    "d made a foolish decision";
             this.richTextBox1.SelectionChanged += new System.EventHandler(this.richTextBox1_SelectionChanged);
             this.richTextBox1.Click += new System.EventHandler(this.richTextBox1_Click);
             // 
@@ -172,7 +174,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(1181, 9);
+            this.button1.Location = new System.Drawing.Point(1466, 9);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(88, 26);
             this.button1.TabIndex = 4;
@@ -186,7 +188,7 @@
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.searchTextBox);
-            this.panel1.Location = new System.Drawing.Point(885, 9);
+            this.panel1.Location = new System.Drawing.Point(1170, 9);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(296, 26);
             this.panel1.TabIndex = 5;
@@ -200,9 +202,19 @@
             this.searchResultsPanel.Controls.Add(this.moreResultsLabel);
             this.searchResultsPanel.Location = new System.Drawing.Point(885, 35);
             this.searchResultsPanel.Name = "searchResultsPanel";
-            this.searchResultsPanel.Size = new System.Drawing.Size(354, 489);
+            this.searchResultsPanel.Size = new System.Drawing.Size(639, 489);
             this.searchResultsPanel.TabIndex = 6;
             this.searchResultsPanel.Visible = false;
+            // 
+            // moreResultsLabel
+            // 
+            this.moreResultsLabel.AutoSize = true;
+            this.moreResultsLabel.Location = new System.Drawing.Point(140, 456);
+            this.moreResultsLabel.Name = "moreResultsLabel";
+            this.moreResultsLabel.Size = new System.Drawing.Size(88, 14);
+            this.moreResultsLabel.TabIndex = 0;
+            this.moreResultsLabel.Text = "More Results...";
+            this.moreResultsLabel.Visible = false;
             // 
             // bibleListComboBox
             // 
@@ -218,22 +230,12 @@
             this.bibleListComboBox.SelectedIndexChanged += new System.EventHandler(this.bibleListComboBox_SelectedIndexChanged);
             this.bibleListComboBox.Click += new System.EventHandler(this.Form1_Click);
             // 
-            // moreResultsLabel
-            // 
-            this.moreResultsLabel.AutoSize = true;
-            this.moreResultsLabel.Location = new System.Drawing.Point(140, 456);
-            this.moreResultsLabel.Name = "moreResultsLabel";
-            this.moreResultsLabel.Size = new System.Drawing.Size(88, 14);
-            this.moreResultsLabel.TabIndex = 0;
-            this.moreResultsLabel.Text = "More Results...";
-            this.moreResultsLabel.Visible = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1283, 911);
+            this.ClientSize = new System.Drawing.Size(1568, 1038);
             this.Controls.Add(this.bibleListComboBox);
             this.Controls.Add(this.searchResultsPanel);
             this.Controls.Add(this.panel1);

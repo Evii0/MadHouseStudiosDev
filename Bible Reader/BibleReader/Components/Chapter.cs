@@ -62,7 +62,8 @@ namespace BibleReader.Components
             return verses;
         }
 
-        public string toString()
+        override
+        public string ToString()
         {
             StringBuilder s = new StringBuilder();
             string chap = Convert.ToString(chapterNumber);

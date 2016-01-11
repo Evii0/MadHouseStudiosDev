@@ -60,9 +60,9 @@ namespace BibleReader.Bibles
             }
         }
 
-        public void displayText(RichTextBox r, string book, int chapter)
+        public void displayText(RichTextBox r, int book, int chapter)
         {
-            r.Text = getBook(book).getChapter(chapter).toString();
+            r.Text = getBook(book).getChapter(chapter).ToString();
         }
 
         public List<KeyValuePair<Verse, int>> searchText(string text)

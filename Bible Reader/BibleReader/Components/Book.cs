@@ -66,7 +66,7 @@ namespace BibleReader.Components
             string t = "";
             for (int i = 0; i < chapters.Count; i++)
             {
-                t += chapters[i].toString() + "\n\n";
+                t += chapters[i].ToString() + "\n\n";
             }
             return t;
         }
